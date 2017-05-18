@@ -4,6 +4,8 @@ class Session < ApplicationRecord
 
   belongs_to :user
 
+  delegate :username, to: :user
+
   def create_session_id
     self.session_id = SecureRandom.uuid
   end

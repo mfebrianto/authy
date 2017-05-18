@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
   has_many :sessions
+  belongs_to :client
 
   attr_accessor :password_confirmation
 
