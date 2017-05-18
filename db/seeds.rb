@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'csv'
+
+Client.delete_all
+p '=====Start insert clients data======'
+clients_csv = File.join(Rails.root, 'db', 'csvs', 'clients.csv')
+CSV.foreach(clients_csv, headers: true).each do |client|
+  Client.create!(client.to_hash)
+end
+p '=========End clients data==========='
