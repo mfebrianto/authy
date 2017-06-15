@@ -15,13 +15,10 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    user_interactor = UserInteractor.new(create_params)
+    result = user_interactor.create
 
-    if @user.save
-      render json: @user, status: :created, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    render json: result, status: status(result)
   end
 
   # PATCH/PUT /users/1
@@ -45,7 +42,23 @@ class UsersController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
+
+    def create_params
+      {
+        username: user_params[:username],
+        password: user_params[:password],
+        password_confirmation: user_params[:password_confirmation],
+        client_id: user_params[:client_id]
+      }
+    end
+
     def user_params
-      params.require(:user).permit(:username, :password, :app_id)
+      params.require(:user).permit(:username,
+                                   :password,
+                                   :password_confirmation, :client_id)
+    end
+
+    def status(result)
+      result[:success] ? :created : :unprocessable_entity
     end
 end
