@@ -15,9 +15,11 @@ class SessionsController < ApplicationController
 
   # POST /sessions
   def create
-    @session = Session.new(session_params)
+    p ">>create_session_params>>#{create_session_params[:username]}"
+    session_interactor = SessionsInteractor.new(params: create_session_params)
 
-    if @session.save
+
+    if session_interactor.create
       render json: @session, status: :created, location: @session
     else
       render json: @session.errors, status: :unprocessable_entity
@@ -47,5 +49,9 @@ class SessionsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def session_params
       params.require(:session).permit(:session_id, :user_id)
+    end
+
+    def create_session_params
+      params.require(:login).permit(:username, :password, :client_id)
     end
 end
