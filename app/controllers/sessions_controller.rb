@@ -21,8 +21,8 @@ class SessionsController < ApplicationController
 
     if session_interactor.create
       render json: @session, status: :created, location: @session
-    else
-      render json: @session.errors, status: :unprocessable_entity
+    # else
+    #   render json: @session.errors, status: :unprocessable_entity
     end
   end
 
