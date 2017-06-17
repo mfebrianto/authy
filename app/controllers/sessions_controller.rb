@@ -15,14 +15,12 @@ class SessionsController < ApplicationController
 
   # POST /sessions
   def create
-    p ">>create_session_params>>#{create_session_params[:username]}"
     session_interactor = SessionsInteractor.new(params: create_session_params)
+    result = session_interactor.create
 
-
-    if session_interactor.create
-      render json: @session, status: :created, location: @session
-    # else
-    #   render json: @session.errors, status: :unprocessable_entity
+    if result[:success]
+      render json: JSONAPI::Serializer.serialize(result[:session]),
+             status: :created
     end
   end
 

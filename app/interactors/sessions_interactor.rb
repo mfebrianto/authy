@@ -7,13 +7,11 @@ class SessionsInteractor
   end
 
   def create
-    exist_username? && match_password? && match_client_id?
-    # user = UserInteractor.new({username: params[:username],
-    #                  password: params[:password],
-    #                  client_id: params[:client_id],
-    #                  state: 'check'})
-    # user.valid?
-    false
+    if exist_username? && match_password? && match_client_id?
+      session = Session.new(user: @user)
+      session.save
+    end
+    { success: true, session: session }
   end
 
   private
@@ -30,7 +28,7 @@ class SessionsInteractor
   end
 
   def match_client_id?
-    if @user.client.blank? || (@user.client.present? && !(@user.client.id == params[:client_id]))
+    if @user.client.blank? || (@user.client.present? && !(@user.client.client_id == params[:client_id]))
       raise 'client_id not match'
     end
     true
