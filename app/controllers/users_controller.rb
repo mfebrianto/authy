@@ -15,7 +15,6 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    p ">>>params>>>>#{params.inspect}"
     user_interactor = UserInteractor.new(create_params)
     result = user_interactor.create
 
