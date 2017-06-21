@@ -24,4 +24,9 @@ class UserInteractor
       { success: false, errors: user.errors.messages }
     end
   end
+
+  def user_valid?
+
+  end
+
 end
