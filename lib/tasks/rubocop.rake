@@ -3,5 +3,5 @@
 require 'rubocop/rake_task'
 
 RuboCop::RakeTask.new(:rubocop) do |task|
-  task.options = ['-R', '-D', '-S', '-E']
+  task.options = %w[-R -D -S -E -c .rubocop.yml]
 end
