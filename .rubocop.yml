@@ -50,8 +50,11 @@ AllCops:
     - '**/config.ru'
   Exclude:
     - 'db/**/*'
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "bin/**/*"
+    - "log/**/*"
     - 'config/**/*'
     - 'script/**/*'
-    - 'bin/**/*'
     - 'Gemfile'
     - 'Gemfile.lock'
