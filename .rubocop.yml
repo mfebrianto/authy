@@ -1,0 +1,57 @@
+require: rubocop-rspec
+
+Metrics/LineLength:
+  Max: 95
+Style/Documentation:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/ClassLength:
+  Exclude:
+    - 'app/builders/setting_builder.rb'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+Rails/DynamicFindBy:
+  Enabled: false
+RSpec/InstanceVariable:
+  Exclude:
+    - 'spec/integration/**/*'
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/integration/**/*'
+RSpec/NestedGroups:
+  Exclude:
+    - 'spec/**/*'
+RSpec/NamedSubject:
+  Exclude:
+    - 'spec/**/*'
+RSpec/LeadingSubject:
+  Exclude:
+    - 'spec/**/*'
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/**/*'
+Rails/HttpPositionalArguments:
+  Exclude:
+    - 'spec/**/*'
+RSpec/AnyInstance:
+  Exclude:
+    - 'spec/builders/setting_builder_spec.rb'
+RSpec/MessageSpies:
+  Enabled: false
+
+# Rails exceptions
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'

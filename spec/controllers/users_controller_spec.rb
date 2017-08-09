@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe UsersController do
@@ -13,7 +15,7 @@ describe UsersController do
 
     let(:params) do
       {
-        params:{
+        params: {
           'user': {
             'username': 'test@mailinator.com',
             'password': 'password',

@@ -1,23 +1,25 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe SessionsController, type: :controller do
-
   describe 'create' do
     subject { JSON.parse(response.body)['data']['type'] }
 
+    let(:user) { create(:user) }
+
     before do
-      @user = create(:user)
       post :create, params
     end
 
     context 'success' do
       let(:params) do
         {
-          params:{
+          params: {
             'login': {
-              'username': @user.username,
-              'password': @user.password,
-              'client_id': @user.client.client_id
+              'username': user.username,
+              'password': user.password,
+              'client_id': user.client.client_id
             }
           }
         }
