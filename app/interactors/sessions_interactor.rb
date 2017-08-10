@@ -9,8 +9,13 @@ class SessionsInteractor
 
   def create
     if exist_username? && match_password? && match_client_id?
-      session = Session.new(user: @user)
-      session.save
+      session = Session.find_by_user_id(@user.id)
+      if session.blank? || session.expired?
+        session = Session.new(user: @user)
+        session.save
+      else
+        session.touch
+      end
     end
     { success: true, session: session }
   end

@@ -26,6 +26,7 @@ describe 'post user', system_test: true do
     end
 
     before do
+      Rails.application.load_seed
       post '/authy/users', params
     end
 
