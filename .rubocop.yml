@@ -42,6 +42,9 @@ RSpec/AnyInstance:
     - 'spec/builders/setting_builder_spec.rb'
 RSpec/MessageSpies:
   Enabled: false
+RSpec/DescribeClass:
+  Exclude:
+    - spec/system_test/*
 
 # Rails exceptions
 AllCops:
