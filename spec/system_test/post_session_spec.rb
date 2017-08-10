@@ -6,8 +6,8 @@ require_relative './system_test_helper'
 describe 'post user', system_test: true do
   let(:headers) do
     {
-        'ACCEPT' => 'application/json',
-        'HTTP_ACCEPT' => 'application/json'
+      'ACCEPT' => 'application/json',
+      'HTTP_ACCEPT' => 'application/json'
     }
   end
 

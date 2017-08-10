@@ -14,6 +14,7 @@ class SessionsInteractor
         session = Session.new(user: @user)
         session.save
       else
+        # rubocop:disable Rails/SkipsModelValidations
         session.touch
       end
     end
