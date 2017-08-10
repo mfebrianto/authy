@@ -29,6 +29,7 @@ group :development, :test do
   gem 'rack-cors', require: 'rack/cors'
   gem 'rspec-rails', '~> 3.6'
   gem 'rubocop-rspec', '~> 1.15', '>= 1.15.1'
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
 end
 
 group :development do
