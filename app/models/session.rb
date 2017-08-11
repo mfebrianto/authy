@@ -14,6 +14,6 @@ class Session < ApplicationRecord
   end
 
   def expired?
-    Time.now.utc - updated_at.localtime > SESSION_TIMEOUT
+    Time.now.utc - updated_at > SESSION_TIMEOUT
   end
 end

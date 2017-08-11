@@ -9,19 +9,24 @@ class SessionsInteractor
 
   def create
     if exist_username? && match_password? && match_client_id?
-      session = Session.find_by_user_id(@user.id)
-      if session.blank? || session.expired?
-        session = Session.new(user: @user)
-        session.save
-      else
-        # rubocop:disable Rails/SkipsModelValidations
-        session.touch
-      end
+      session = update_or_create_session
     end
     { success: true, session: session }
   end
 
   private
+
+  def update_or_create_session
+    session = Session.where(user_id: @user.id).last
+    if session.blank? || (session && session.expired?)
+      session = Session.new(user: @user)
+      session.save
+    else
+      # rubocop:disable Rails/SkipsModelValidations
+      session.touch
+    end
+    session
+  end
 
   def exist_username?
     @user = User.find_by_username(params[:username])
