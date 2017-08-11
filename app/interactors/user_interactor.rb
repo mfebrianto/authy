@@ -1,10 +1,11 @@
-class UserInteractor
+# frozen_string_literal: true
 
+class UserInteractor
   attr_accessor :username, :password, :password_confirmation, :client,
                 :client_id, :user
 
   def initialize(username:, password:, password_confirmation:, client_id:)
-    #todo : error message if client not found
+    # TODO: error message if client not found
     @client = Client.find_by_client_id(client_id)
     @user = User.new(username: username,
                      password: password,
@@ -25,8 +26,5 @@ class UserInteractor
     end
   end
 
-  def user_valid?
-
-  end
-
+  def user_valid?; end
 end

@@ -5,5 +5,4 @@ class UserSerializer
 
   attribute :id
   attribute :username
-
 end

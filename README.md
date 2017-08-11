@@ -5,13 +5,20 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+## Ruby version
 
-* System dependencies
+## System dependencies
 
-* Configuration
+Before running bundle install there are several libraries that need to be installed.
 
-* Database creation
+* postgres ( brew install postgresql )
+* docker
+
+
+
+## Configuration
+
+## Database creation
 
 ```
 docker run --name postgres_authy -p 5432:5432 
@@ -19,12 +26,10 @@ docker run --name postgres_authy -p 5432:5432
 -e POSTGRES_DB=authy_dev -d postgres
 ```
 
-* Database initialization
+## Database initialization
 
-* How to run the test suite
+## How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
+## Deployment instructions

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: %i[show update destroy]
 
   # GET /users
   def index
@@ -36,29 +38,30 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def create_params
-      {
-        username: user_params[:username],
-        password: user_params[:password],
-        password_confirmation: user_params[:password_confirmation],
-        client_id: user_params[:client_id]
-      }
-    end
+  # Only allow a trusted parameter "white list" through.
 
-    def user_params
-      params.require(:user).permit(:username,
-                                   :password,
-                                   :password_confirmation, :client_id)
-    end
+  def create_params
+    {
+      username: user_params[:username],
+      password: user_params[:password],
+      password_confirmation: user_params[:password_confirmation],
+      client_id: user_params[:client_id]
+    }
+  end
 
-    def status(result)
-      result[:success] ? :created : :unprocessable_entity
-    end
+  def user_params
+    params.require(:user).permit(:username,
+                                 :password,
+                                 :password_confirmation, :client_id)
+  end
+
+  def status(result)
+    result[:success] ? :created : :unprocessable_entity
+  end
 end
